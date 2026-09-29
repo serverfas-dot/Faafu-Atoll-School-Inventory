@@ -10,7 +10,8 @@ function AppContent() {
 
   useEffect(() => {
     const path = window.location.pathname;
-    setShowAdmin(path === '/admin' || path.startsWith('/admin'));
+    const adminPath = `${import.meta.env.BASE_URL}admin`;
+    setShowAdmin(path === adminPath || path.startsWith(`${adminPath}/`) || path.endsWith('/admin'));
   }, []);
 
   if (loading) {

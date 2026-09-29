@@ -56,7 +56,7 @@ export function ReportsGenerator() {
 
   async function loadLogo() {
     try {
-      const response = await fetch('/png.png');
+      const response = await fetch(`${import.meta.env.BASE_URL}png.png`);
       const blob = await response.blob();
       const reader = new FileReader();
       reader.onloadend = () => {

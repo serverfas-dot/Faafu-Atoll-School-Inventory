@@ -12,6 +12,8 @@ import { SuperAdminPanel } from './SuperAdminPanel';
 import { SupplierManagement } from './SupplierManagement';
 import { Package, TrendingUp, TrendingDown, FileText, ShoppingCart, CheckSquare, LogOut, FileBarChart, ArrowLeft, Key, Shield, Truck } from 'lucide-react';
 
+const logoSrc = `${import.meta.env.BASE_URL}png.png`;
+
 type Tab = 'inventory' | 'stock-in' | 'stock-out' | 'suppliers' | 'reports' | 'requests' | 'approvals' | 'generate-reports' | 'change-password' | 'super-admin';
 
 export function Dashboard() {
@@ -27,7 +29,7 @@ export function Dashboard() {
   };
 
   const handleBackToPublic = () => {
-    window.location.href = '/';
+    window.location.href = import.meta.env.BASE_URL;
   };
 
   const isAdmin = profile?.role === 'admin' || profile?.role === 'super_admin';
@@ -39,7 +41,7 @@ export function Dashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-3">
-              <img src="/png.png" alt="Faafu Atoll School" className="w-12 h-12 object-contain rounded-full" />
+              <img src={logoSrc} alt="Faafu Atoll School" className="w-12 h-12 object-contain rounded-full" />
               <div>
                 <h1 className="text-lg font-bold text-slate-800">Faafu Atoll School</h1>
                 <p className="text-xs text-slate-600">Stock Inventory System</p>

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { ArrowLeft } from 'lucide-react';
 
+const logoSrc = `${import.meta.env.BASE_URL}png.png`;
+
 export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,7 +26,7 @@ export function Login() {
   }
 
   function handleBackToPublic() {
-    window.location.href = '/';
+    window.location.href = import.meta.env.BASE_URL;
   }
 
   return (
@@ -40,7 +42,7 @@ export function Login() {
         </button>
 
         <div className="flex items-center justify-center mb-6 sm:mb-8 mt-8 sm:mt-6">
-          <img src="/png.png" alt="Faafu Atoll School" className="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-full" />
+          <img src={logoSrc} alt="Faafu Atoll School" className="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-full" />
         </div>
 
         <h1 className="text-xl sm:text-2xl font-bold text-center text-slate-800 mb-2">

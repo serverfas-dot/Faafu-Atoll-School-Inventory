@@ -17,6 +17,8 @@ interface RequestItem {
 
 type ViewMode = 'landing' | 'form';
 
+const logoSrc = `${import.meta.env.BASE_URL}png.png`;
+
 export function PublicRequestForm() {
   const [items, setItems] = useState<Item[]>([]);
   const [authorizedRequesters, setAuthorizedRequesters] = useState<AuthorizedRequester[]>([]);
@@ -276,7 +278,7 @@ export function PublicRequestForm() {
               <button
                 onClick={() => {
                   setShowAdminMenu(false);
-                  window.location.href = '/admin';
+                  window.location.href = `${import.meta.env.BASE_URL}admin`;
                 }}
                 className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-blue-50 transition text-sm font-medium text-slate-700 hover:text-blue-600"
               >
@@ -291,7 +293,7 @@ export function PublicRequestForm() {
           <div className="w-full max-w-5xl">
             <div className="text-center mb-8 lg:mb-12">
               <div className="flex items-center justify-center mb-6">
-                <img src="/png.png" alt="Faafu Atoll School" className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 object-contain" />
+                <img src={logoSrc} alt="Faafu Atoll School" className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 object-contain" />
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
                 Faafu Atoll School
@@ -356,7 +358,7 @@ export function PublicRequestForm() {
             </button>
 
             <div className="flex items-center gap-2 sm:gap-3">
-              <img src="/png.png" alt="Faafu Atoll School" className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-full" />
+              <img src={logoSrc} alt="Faafu Atoll School" className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-full" />
               <div>
                 <h1 className="text-sm sm:text-lg font-bold text-slate-800">Faafu Atoll School</h1>
                 <p className="text-xs text-slate-600 hidden sm:block">Stock Request System</p>
@@ -377,7 +379,7 @@ export function PublicRequestForm() {
                   <button
                     onClick={() => {
                       setShowAdminMenu(false);
-                      window.location.href = '/admin';
+                      window.location.href = `${import.meta.env.BASE_URL}admin`;
                     }}
                     className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-blue-50 transition text-sm font-medium text-slate-700 hover:text-blue-600"
                   >

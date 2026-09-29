@@ -23,6 +23,7 @@ export function PublicRequestForm() {
   const [items, setItems] = useState<Item[]>([]);
   const [authorizedRequesters, setAuthorizedRequesters] = useState<AuthorizedRequester[]>([]);
   const [loading, setLoading] = useState(false);
+  const [dataError, setDataError] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>('landing');
   const [searchTerm, setSearchTerm] = useState('');
@@ -83,7 +84,12 @@ export function PublicRequestForm() {
       .select('*')
       .order('item_code');
 
-    if (!error && data) {
+    if (error) {
+      setDataError('Unable to load inventory data. Please check the hosted database connection.');
+      return;
+    }
+
+    if (data) {
       setItems(data);
     }
   }
@@ -94,7 +100,12 @@ export function PublicRequestForm() {
       .select('id, name, email, id_card_number, department')
       .order('name');
 
-    if (!error && data) {
+    if (error) {
+      setDataError('Unable to load requester data. Please check the hosted database connection.');
+      return;
+    }
+
+    if (data) {
       setAuthorizedRequesters(data);
     }
   }
@@ -398,6 +409,13 @@ export function PublicRequestForm() {
           <h2 className="text-xl sm:text-2xl font-bold text-slate-800 mb-1">Request Stock Items</h2>
           <p className="text-xs sm:text-sm text-slate-600">Fill out the form to request items</p>
         </div>
+
+        {dataError && (
+          <div className="mb-3 bg-red-50 border-2 border-red-200 rounded-lg p-3 mx-1 sm:mx-0">
+            <p className="text-sm font-semibold text-red-700">{dataError}</p>
+            <p className="text-xs text-red-600 mt-1">The app is online, but it cannot reach the shared school records.</p>
+          </div>
+        )}
 
         {submitted && (
           <div className="mb-3 bg-green-50 border-2 border-green-200 rounded-lg p-3 mx-1 sm:mx-0">

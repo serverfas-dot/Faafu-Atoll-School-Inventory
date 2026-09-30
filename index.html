@@ -25,25 +25,20 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- GitHub Pages SPA routing: 404.html copies index.html -->
+    <!-- GitHub Pages SPA routing: decode path from 404.html redirect -->
     <script>
       (function () {
-        var pathSegmentsToKeep = 1; // adjust if not deploying to a project page
         var l = window.location;
         if (l.search[1] === '/') {
           var decoded = l.search
             .slice(1)
             .split('&')
-            .map(function (s) {
-              return s.replace(/~and~/g, '&');
-            })
+            .map(function (s) { return s.replace(/~and~/g, '&'); })
             .join('?');
           window.history.replaceState(
             null,
             null,
-            l.pathname.slice(0, -1 - pathSegmentsToKeep) +
-              decoded +
-              l.hash
+            l.pathname + decoded + l.hash
           );
         }
       })();
